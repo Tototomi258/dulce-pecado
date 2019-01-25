@@ -76,6 +76,30 @@ nav {
   border: 2px solid black;
 }
 
+.galletas-recipe {
+	display: none;
+}
+
+.muffins-recipe {
+	display: none;
+}
+
+.postres-recipe {
+	display: none;
+}
+
+.tortas-recipe {
+	display: none;
+}
+
+.link {
+	display: none;
+}
+
+#recipe {
+	display: none;
+}
+
 #title-container {
 	margin-bottom: 0;
 	padding-bottom: 2vh;
