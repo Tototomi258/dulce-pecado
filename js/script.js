@@ -15,12 +15,12 @@ $(function() {
 			$("#third").removeClass('breadcrumb').text('');
 			$(".menu-selector").show();
 			$(".content").hide();
-			$(".recipe").hide();
+			$("#recipe").hide();
 		});
 		$("#second").click(function() {
 			$("#third").removeClass('breadcrumb').text('');
 			$(".content").show();
-			$(".recipe").hide();
+			$("#recipe").hide();
 		});
 	
 
@@ -156,27 +156,117 @@ $(function() {
 				$(".galletas-recipe").hide();
 				$(".muffins-recipe").hide();
 				$(".postres-recipe").hide();
-				$(".tortas-recipe").shoe();
+				$(".tortas-recipe").show();
 			}
 
 			if (linkId == 'link1') {
-				$("#third").html(title1);
+				$("#third").html(function() {
+					if (currentId == 'galletas') {
+						return "galleta 1";
+					} else if (currentId == 'muffins') {
+						return "muffin 1";
+					} else if (currentId == 'postres') {
+						return "postre 1";
+					} else if (currentId == 'tortas') {
+						return "torta 1";
+					}
+				});
 				$(".1").show();
+				$(".2").hide();
+				$(".3").hide();
+				$(".4").hide();
+				$(".5").hide();
+				$(".6").hide();
 			} else if (linkId == 'link2') {
-				$("#third").html(title2);
+				$("#third").html(function() {
+					if (currentId == 'galletas') {
+						return "galleta 2";
+					} else if (currentId == 'muffins') {
+						return "muffin 2";
+					} else if (currentId == 'postres') {
+						return "postre 2";
+					} else if (currentId == 'tortas') {
+						return "torta 2";
+					}
+				});				
 				$(".2").show();
+				$(".1").hide();
+				$(".3").hide();
+				$(".4").hide();
+				$(".5").hide();
+				$(".6").hide();
 			} else if (linkId == 'link3') {
-				$("#third").html(title3);
+				$("#third").html(function() {
+					if (currentId == 'galletas') {
+						return "galleta 3";
+					} else if (currentId == 'muffins') {
+						return "muffin 3";
+					} else if (currentId == 'postres') {
+						return "postre 3";
+					} else if (currentId == 'tortas') {
+						return "torta 3";
+					}
+				});				
 				$(".3").show();
+				$(".2").hide();
+				$(".1").hide();
+				$(".4").hide();
+				$(".5").hide();
+				$(".6").hide();
 			} else if (linkId == 'link4') {
-				$("#third").html(title4);
+				$("#third").html(function() {
+					if (currentId == 'galletas') {
+						return "galleta 4";
+					} else if (currentId == 'muffins') {
+						return "muffin 4";
+					} else if (currentId == 'postres') {
+						return "postre 4";
+					} else if (currentId == 'tortas') {
+						return "torta 4";
+					}
+				});				
 				$(".4").show();
+				$(".2").hide();
+				$(".3").hide();
+				$(".1").hide();
+				$(".5").hide();
+				$(".6").hide();
 			} else if (linkId == 'link5') {
-				$("#third").html(title5);
+				$("#third").html(function() {
+					if (currentId == 'galletas') {
+						return "galleta 5";
+					} else if (currentId == 'muffins') {
+						return "muffin 5";
+					} else if (currentId == 'postres') {
+						return "postre 5";
+					} else if (currentId == 'tortas') {
+						return "torta 5";
+					}
+				});				
 				$(".5").show();
+				$(".2").hide();
+				$(".3").hide();
+				$(".4").hide();
+				$(".1").hide();
+				$(".6").hide();
 			} else if (linkId == 'link6') {
-				$("#third").html(title6);
+				$("#third").html(function() {
+					if (currentId == 'galletas') {
+						return "galleta 6";
+					} else if (currentId == 'muffins') {
+						return "muffin 6";
+					} else if (currentId == 'postres') {
+						return "postre 6";
+					} else if (currentId == 'tortas') {
+						return "torta 6";
+					}
+				});
 				$(".6").show();
+				$(".2").hide();
+				$(".3").hide();
+				$(".4").hide();
+				$(".5").hide();
+				$(".1").hide();
 			}
 		});
 	});
