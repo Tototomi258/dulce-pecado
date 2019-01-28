@@ -1,5 +1,10 @@
 $(function() {
-	var receta;
+//Variables for each recipe´s title
+
+	var postre1 = 'Arroz con Leche y Mermelada';
+	var postre2 = 'Sopa de Melón Charentais Helado';
+
+	var torta1 = 'Tarteletas de Chocolate y Pimienta';
 
 	$(".menu-selector").click(function() {
 		var currentId = this.id;
@@ -7,19 +12,19 @@ $(function() {
 //Hides menu and shows new submenu
 
 		$(".menu-selector").hide();
-		$(".content").show();
+		$(".recipe-selector").show();
 
 		$("#second").addClass('breadcrumb').text(currentId);
 		$("#first").click(function() {
-			$("#second").removeClass('breadcrumb').text('');
-			$("#third").removeClass('breadcrumb').text('');
+			$("#second").removeClass('breadcrumb').empty();
+			$("#third").removeClass('breadcrumb').empty();
 			$(".menu-selector").show();
-			$(".content").hide();
+			$(".recipe-selector").hide();
 			$("#recipe").hide();
 		});
 		$("#second").click(function() {
-			$("#third").removeClass('breadcrumb').text('');
-			$(".content").show();
+			$("#third").removeClass('breadcrumb').empty();
+			$(".recipe-selector").show();
 			$("#recipe").hide();
 		});
 	
@@ -35,16 +40,28 @@ $(function() {
 
 		$("p").ready(function() {
 			if (currentId == 'galletas') {
-				$(".galleta").css("display", "block");
+				$(".galleta-ingr").show();
+				$(".mufffin-ingr").hide();
+				$(".postre-ingr").hide();
+				$(".torta-ingr").hide();
 			}
 			if (currentId == 'muffins') {
-				$(".muffin").css("display", "block");
+				$(".muffin-ingr").show();
+				$(".galleta-ingr").hide();
+				$(".postre-ingr").hide();
+				$(".torta-ingr").hide();
 			}
 			if (currentId == 'postres') {
-				$(".postre").css("display", "block");
+				$(".postre-ingr").show();
+				$(".galleta-ingr").hide();
+				$(".muffin-ingr").hide();
+				$(".torta-ingr").hide();
 			}
 			if (currentId == 'tortas') {
-				$(".torta").css("display", "block");
+				$(".torta-ingr").show();
+				$(".galleta-ingr").hide();
+				$(".muffin-ingr").hide();
+				$(".postre-ingr").hide();
 			}
 		});
 
@@ -91,10 +108,10 @@ $(function() {
 				}
 			} else if (currentId == 'postres') {
 				if (i == 0) {
-					return 'postre 1';
+					return postre1;
 				}
 				if (i == 2) {
-					return 'postre 2';
+					return postre2;
 				}
 				if (i == 4) {
 					return 'postre 3';
@@ -110,7 +127,7 @@ $(function() {
 				}
 			} else if (currentId == 'tortas') {
 				if (i == 0) {
-					return 'torta 1';
+					return torta1;
 				}
 				if (i == 2) {
 					return 'torta 2';
@@ -130,10 +147,11 @@ $(function() {
 			}
 		});
 
+//Shows the recipe page
 		$(".recipe").click(function() {
 			var linkId = this.id;
 
-			$(".content").hide();
+			$(".recipe-selector").hide();
 			$("#recipe").show();
 			$("#third").addClass('breadcrumb');
 
@@ -159,6 +177,7 @@ $(function() {
 				$(".tortas-recipe").show();
 			}
 
+//Selects a breadcrumb based on the link
 			if (linkId == 'link1') {
 				$("#third").html(function() {
 					if (currentId == 'galletas') {
@@ -166,9 +185,9 @@ $(function() {
 					} else if (currentId == 'muffins') {
 						return "muffin 1";
 					} else if (currentId == 'postres') {
-						return "postre 1";
+						return postre1;
 					} else if (currentId == 'tortas') {
-						return "torta 1";
+						return torta1;
 					}
 				});
 				$(".1").show();
@@ -184,7 +203,7 @@ $(function() {
 					} else if (currentId == 'muffins') {
 						return "muffin 2";
 					} else if (currentId == 'postres') {
-						return "postre 2";
+						return postre2;
 					} else if (currentId == 'tortas') {
 						return "torta 2";
 					}
