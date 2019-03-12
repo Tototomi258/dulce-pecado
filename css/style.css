@@ -94,6 +94,7 @@ nav {
 
 .recipe-card {
 	display: none;
+	margin: 2vh 0;
 }
 
 #recipe {
