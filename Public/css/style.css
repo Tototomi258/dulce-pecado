@@ -9,6 +9,34 @@ img {
 nav {
 	-webkit-box-shadow: none;
   box-shadow: none;
+}	
+
+/* label color */
+.input-field label {
+  color: #b71c1c !important;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label, textarea:focus + label {
+  color: #b71c1c !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus, .input-field input[type=email]:focus, textarea:focus {
+  border-bottom: 1px solid #b71c1c !important;
+  box-shadow: 0 1px 0 0 #b71c1c !important;
+}
+/* valid color */
+.input-field input[type=text].valid, .input-field input[type=email].valid, textarea.valid {
+  border-bottom: 1px solid #b71c1c !important;
+  box-shadow: 0 1px 0 0 #b71c1c !important;
+}
+/* invalid color */
+.input-field input[type=text].invalid, .input-field input[type=email].invalid, textarea.invalid {
+  border-bottom: 1px solid #ffe0b2 !important;
+  box-shadow: 0 1px 0 0 #ffe0b2 !important;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #b71c1c !important;
 }
 
 .home {
@@ -74,6 +102,7 @@ nav {
 	-webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
   border: 2px solid black;
+  border-radius: 15px;
 }
 
 .galletas-recipe {
