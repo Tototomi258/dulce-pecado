@@ -1,43 +1,19 @@
 $(() => {
 //Const for each recipe´s title
-
-	const GALLETA_1 = '';
-	const GALLETA_2 = '';
-	const GALLETA_3 = '';
-	const GALLETA_4 = '';
-	const GALLETA_5 = '';
-	const GALLETA_6 = '';
-
-	const MUFFIN_1 = '';
-	const MUFFIN_2 = '';
-	const MUFFIN_3 = '';
-	const MUFFIN_4 = '';
-	const MUFFIN_5 = '';
-	const MUFFIN_6 = '';
-
-	const POSTRE_1 = 'Arroz con Leche y Mermelada';
-	const POSTRE_2 = 'Sopa de Melón Charentais Helado';
-	const POSTRE_3 = 'Mousse de Chocolate';
-	const POSTRE_4 = 'Pizza de Frutas';
-	const POSTRE_5 = 'Pastel de Queso con Durazno';
-	const POSTRE_6 = '';
-
-	const TORTA_1 = 'Tarteletas de Chocolate y Pimienta';
-	const TORTA_2 = 'Pastel de Queso con Arandanos';
-	const TORTA_3 = 'Pastel de Mocha Italiano';
-	const TORTA_4 = 'Torta de Chocolate Blanco y Miel';
-	const TORTA_5 = 'Cuadraditos de Torta de Manteca';
-	const TORTA_6 = '';
+	const galletas = [''];
+	const muffins = [''];
+	const postres = ['Arroz con Leche y Mermelada', 'Sopa de Melón Charentais Helado', 'Mousse de Chocolate', 'Pizza de Frutas', 'Pastel de Queso con Durazno'];
+	const tortas = ['Tarteletas de Chocolate y Pimienta', 'Pastel de Queso con Arandanos', 'Pastel de Mocha Italiano', 'Torta de Chocolate Blanco y Miel', 'Cuadraditos de Torta de Manteca'];
 
 	$('.menu-selector').click(function() {
-		const CURRENT_ID = this.id;
+		const currentID = this.id;
 
 //Hides menu and shows new submenu
 
 		$('.menu-selector').hide();
 		$('.recipe-selector').show();
 
-		$('#second').addClass('breadcrumb').text(CURRENT_ID);
+		$('#second').addClass('breadcrumb').text(currentID);
 		$('#first').click(function() {
 			$('#second').removeClass('breadcrumb').empty();
 			$('#third').removeClass('breadcrumb').empty();
@@ -56,183 +32,75 @@ $(() => {
 
 		$('.card-image > img').attr('src', (i) => {
 			i++;
-			return `media/${CURRENT_ID}${i}.jpg`;
+			return `media/${currentID}${i}.jpg`;
 		});	
 
 //Displays text based on id
 
-		$('p').ready(() => {
-			let id = CURRENT_ID;
-
-			$('.galleta-ingr').hide();
-			$('.muffin-ingr').hide();
-			$('.postre-ingr').hide();
-			$('.torta-ingr').hide();
-			$('.' + id.substring(0, id.length - 1) + '-ingr').show();
+		$('.card-reveal').ready(() => {
+			$('.' + currentID.substring(0, currentID.length - 1) + '-ingr').show().siblings().hide();
+			$('span').show();
 		});
 
 		
 //Selects title with a loop based on id
 
 		$('.card-title').text((i) => {
-			if (CURRENT_ID == 'galletas') {
-				if (i == 0) return GALLETA_1;
-				if (i == 2) return GALLETA_2;
-				if (i == 4) return GALLETA_3;
-				if (i == 6) return GALLETA_4;
-				if (i == 8) return GALLETA_5;
-				if (i == 10) return GALLETA_6;
-			} else if (CURRENT_ID == 'muffins') {
-				if (i == 0) return MUFFIN_1;
-				if (i == 2) return MUFFIN_2;
-				if (i == 4) return MUFFIN_3;
-				if (i == 6) return MUFFIN_4;
-				if (i == 8) return MUFFIN_5;
-				if (i == 10) return MUFFIN_6;
-			} else if (CURRENT_ID == 'postres') {
-				if (i == 0) return POSTRE_1;
-				if (i == 2) return POSTRE_2;
-				if (i == 4) return POSTRE_3;
-				if (i == 6) return POSTRE_4;
-				if (i == 8) return POSTRE_5;
-				if (i == 10) return POSTRE_6;
-			} else if (CURRENT_ID == 'tortas') {
-				if (i == 0) return TORTA_1;
-				if (i == 2) return TORTA_2;
-				if (i == 4) return TORTA_3;
-				if (i == 6) return TORTA_4;
-				if (i == 8)	return TORTA_5;
-				if (i == 10) return TORTA_6;
+			if (currentID == 'galletas') {
+				return galletas[i/2];	
+			} else if (currentID == 'postres') {
+				return postres[i/2];	
+			} else if (currentID == 'muffins') {
+				return muffins[i/2];	
+			} else if (currentID == 'tortas') {
+				return tortas[i/2];	
 			}
 		});
 
 //Shows the recipe page
+
 		$('.recipe').click(function() {
-			let linkId = this.id;
+			const linkId = this.id;
+			const linkNum = linkId.charAt(4);
 
 			$('.recipe-selector').hide();
 			$('#recipe').show();
 			$('#third').addClass('breadcrumb');
 
-			$('.galletas-recipe').hide();
-			$('.muffins-recipe').hide();
-			$('.postres-recipe').hide();
-			$('.tortas-recipe').hide();
-			$('.extra-recipe').hide();
-			$('.' + CURRENT_ID + '-recipe').show();
+			$('.1, .2, .3, .4, .5, .6').hide();
+
+			$(`.${currentID}-recipe`).show().siblings().hide();
+			$(`.${linkNum}`).show();
 
 			$('.extra').click(function() {
-				const MOCHA = $(this).hasClass('mocha');
-				const MIGA = $(this).hasClass('miga');
+				const mocha = $(this).hasClass('mocha');
+				const miga = $(this).hasClass('miga');
 
-				$('.extra-recipe').show();
-				$('.galletas-recipe').hide();
-				$('.muffins-recipe').hide();
-				$('.postres-recipe').hide();
-				$('.tortas-recipe').hide();
+				$('.extra-recipe').show().siblings().hide();
 
-				$('.galleta-ingr').hide();
-				$('.muffin-ingr').hide();
-				$('.postre-ingr').hide();
-				$('.torta-ingr').hide();
-
-				if (MOCHA == true) {
+				if (mocha == true) {
 					$('.1').show();
 					$('#third').html('Crema Mocha')
-				} else if (MIGA == true) {
+				} else if (miga == true) {
 					$('.2').show();
 					$('#third').html('Torta de Miga');
 				}
 			});
 
 
-//Selects a breadcrumb based on the link
-			$(".1").hide();
-			$(".2").hide();
-			$(".3").hide();
-			$(".4").hide();
-			$(".5").hide();
-			$(".6").hide();
+//Selects a breadcrumb based on the link number
 
-			if (linkId == 'link1') {
-				$('#third').html(() => {
-					if (CURRENT_ID == 'galletas') {
-						return GALLETA_1;
-					} else if (CURRENT_ID == 'muffins') {
-						return MUFFIN_1;
-					} else if (CURRENT_ID == 'postres') {
-						return POSTRE_1;
-					} else if (CURRENT_ID == 'tortas') {
-						return TORTA_1;
-					}
-				});
-				$('.1').show();
-			} else if (linkId == 'link2') {
-				$('#third').html(() => {
-					if (CURRENT_ID == 'galletas') {
-						return GALLETA_2;
-					} else if (CURRENT_ID == 'muffins') {
-						return MUFFIN_2;
-					} else if (CURRENT_ID == 'postres') {
-						return POSTRE_2;
-					} else if (CURRENT_ID == 'tortas') {
-						return TORTA_2;
-					}
-				});				
-				$('.2').show();
-			} else if (linkId == 'link3') {
-				$('#third').html(() => {
-					if (CURRENT_ID == 'galletas') {
-						return GALLETA_3;
-					} else if (CURRENT_ID == 'muffins') {
-						return MUFFIN_3;
-					} else if (CURRENT_ID == 'postres') {
-						return POSTRE_3;
-					} else if (CURRENT_ID == 'tortas') {
-						return TORTA_3;
-					}
-				});				
-				$('.3').show();
-			} else if (linkId == 'link4') {
-				$('#third').html(() => {
-					if (CURRENT_ID == 'galletas') {
-						return GALLETA_4;
-					} else if (CURRENT_ID == 'muffins') {
-						return MUFFIN_4;
-					} else if (CURRENT_ID == 'postres') {
-						return POSTRE_4;
-					} else if (CURRENT_ID == 'tortas') {
-						return TORTA_4;
-					}
-				});				
-				$('.4').show();
-			} else if (linkId == 'link5') {
-				$('#third').html(() => {
-					if (CURRENT_ID == 'galletas') {
-						return GALLETA_5;
-					} else if (CURRENT_ID == 'muffins') {
-						return MUFFIN_5;
-					} else if (CURRENT_ID == 'postres') {
-						return POSTRE_5;
-					} else if (CURRENT_ID == 'tortas') {
-						return TORTA_5;
-					}
-				});				
-				$('.5').show();
-			} else if (linkId == 'link6') {
-				$('#third').html(() => {
-					if (CURRENT_ID == 'galletas') {
-						return GALLETA_6;
-					} else if (CURRENT_ID == 'muffins') {
-						return MUFFIN_6;
-					} else if (CURRENT_ID == 'postres') {
-						return POSTRE_6;
-					} else if (CURRENT_ID == 'tortas') {
-						return TORTA_6	;
-					}
-				});
-				$('.6').show();
-			}
+			$('#third').html(() => {
+				if (currentID == 'galletas') {
+					return galletas[linkNum - 1];
+				} else if (currentID == 'muffins') {
+					return muffins[linkNum - 1];
+				} else if (currentID == 'postres') {
+					return postres[linkNum - 1]
+				} else if (currentID == 'tortas') {
+					return tortas[linkNum - 1];
+				}
+			});
 		});
 	});
 });

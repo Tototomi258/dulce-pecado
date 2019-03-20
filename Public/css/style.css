@@ -47,6 +47,11 @@ nav {
   -webkit-text-stroke-color: black;
 }
 
+.recipe-title {
+	font-family: "Great Vibes";	
+	font-size: 4em;
+}
+
 .breadcrumb {
 	font-family: "Dancing Script";
 	font-size: 2.5em;
