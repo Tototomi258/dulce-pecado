@@ -1,9 +1,17 @@
-$(() => {
+$('document').ready(() => {
 //Const for each recipe´s title
 	const galletas = [''];
 	const muffins = [''];
 	const postres = ['Arroz con Leche y Mermelada', 'Sopa de Melón Charentais Helado', 'Mousse de Chocolate', 'Pizza de Frutas', 'Pastel de Queso con Durazno'];
 	const tortas = ['Tarteletas de Chocolate y Pimienta', 'Pastel de Queso con Arandanos', 'Pastel de Mocha Italiano', 'Torta de Chocolate Blanco y Miel', 'Cuadraditos de Torta de Manteca'];
+
+	$('.menu-selector').hover(
+		function() {
+		  $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+		}, function() {
+		  $(this).removeClass('shadow-lg');
+		}
+	);
 
 	$('.menu-selector').click(function() {
 		const currentID = this.id;
@@ -13,59 +21,60 @@ $(() => {
 		$('.menu-selector').hide();
 		$('.recipe-selector').show();
 
-		$('#second').addClass('breadcrumb').text(currentID);
+		$('.breadcrumb').append(`<li class="breadcrumb-item text-capitalize" id="second"><a href="#">${currentID}</a></li>`)
+
 		$('#first').click(function() {
-			$('#second').removeClass('breadcrumb').empty();
-			$('#third').removeClass('breadcrumb').empty();
 			$('.menu-selector').show();
+			$('#second').remove();
+			$('#third').remove();
 			$('.recipe-selector').hide();
 			$('#recipe').hide();
 		});
+
 		$('#second').click(function() {
-			$('#third').removeClass('breadcrumb').empty();
 			$('.recipe-selector').show();
 			$('#recipe').hide();
+			$('#third').remove();
 		});
 	
 
 //Selects image based on id
 
-		$('.card-image > img').attr('src', (i) => {
+		$('.card-img-top').attr('src', (i) => {
 			i++;
 			return `media/${currentID}${i}.jpg`;
 		});	
 
-//Displays text based on id
-
-		$('.card-reveal').ready(() => {
-			$('.' + currentID.substring(0, currentID.length - 1) + '-ingr').show().siblings().hide();
-			$('span').show();
-		});
-
-		
 //Selects title with a loop based on id
 
 		$('.card-title').text((i) => {
 			if (currentID == 'galletas') {
-				return galletas[i/2];	
+				return galletas[i];	
 			} else if (currentID == 'postres') {
-				return postres[i/2];	
+				return postres[i];	
 			} else if (currentID == 'muffins') {
-				return muffins[i/2];	
+				return muffins[i];	
 			} else if (currentID == 'tortas') {
-				return tortas[i/2];	
+				return tortas[i];	
 			}
 		});
 
 //Shows the recipe page
 
-		$('.recipe').click(function() {
+		$('.btn').click(function() {
 			const linkId = this.id;
 			const linkNum = linkId.charAt(4);
 
 			$('.recipe-selector').hide();
 			$('#recipe').show();
-			$('#third').addClass('breadcrumb');
+
+			$('.breadcrumb').append(function() {
+				if ($('#third').length) {
+					return null;
+				} else {
+					return '<li class="breadcrumb-item text-capitalize" id="third"><a href="#"></a></li>';
+				}
+			});
 
 			$('.1, .2, .3, .4, .5, .6').hide();
 
@@ -90,7 +99,7 @@ $(() => {
 
 //Selects a breadcrumb based on the link number
 
-			$('#third').html(() => {
+			$('#third a').text(() => {
 				if (currentID == 'galletas') {
 					return galletas[linkNum - 1];
 				} else if (currentID == 'muffins') {
@@ -99,7 +108,7 @@ $(() => {
 					return postres[linkNum - 1]
 				} else if (currentID == 'tortas') {
 					return tortas[linkNum - 1];
-				}
+				} 
 			});
 		});
 	});

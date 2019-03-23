@@ -6,7 +6,7 @@ const path = require('path');
 const PORT = 8080;
 app.use(express.static('public'));
 
-app.get('/Public/', function (req, res) {
+app.get('/Public/', (req, res, next) => {
 	res.writeHead(200, {'Content-Type': 'text/html'});
   fs.readFile('Public/index.html', null, (error, data) => {
   	if (error) {
