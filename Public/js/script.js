@@ -72,7 +72,7 @@ $('document').ready(() => {
 				if ($('#third').length) {
 					return null;
 				} else {
-					return '<li class="breadcrumb-item text-capitalize" id="third"><a href="#"></a></li>';
+					return '<li class="breadcrumb-item text-capitalize text-truncate" id="third"><a href="#"></a></li>';
 				}
 			});
 

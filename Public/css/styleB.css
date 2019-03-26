@@ -1,5 +1,6 @@
 body {
 	background-color: #ffe0b2;
+	margin-bottom: 10vh;
 }
 
 .breadcrumb-item a {
@@ -50,12 +51,21 @@ body {
   border-radius: 15px;
 }
 
-.menu-container {
+.menu-container-top {
 	padding: 5vh 0;
 }
 
 .recipe-selector {
 	display: none;
+}
+
+.recipe-title {
+	font-family: "Great Vibes";	
+	font-size: 4em;
+}
+
+.col-sm-12 img {
+	padding-bottom: 5vh;
 }
 
 .btn {
@@ -69,11 +79,19 @@ body {
 }
 
 .card-top {
-	margin-top: -15vh;
+	margin-top: -5vh;
+	border: none;
 }
 
 .card-bottom {
 	margin-top: 5vh;
+	border: none;
+}
+
+#recipe {
+	display: none;
+	margin-top: -5vh;
+	padding: 5vh 0 2vh 0;
 }
 
 #third {
@@ -110,4 +128,30 @@ body {
 	background-image: url("../media/torta.jpg");
 	background-size: cover;
 	height: 37vh;
+}
+
+@media (max-width: 768px) {
+	.col-sm-12 img {
+		padding: 0;
+	}
+
+	.home {
+		font-size: 4.75em;
+	}
+
+	.breadcrumb-item {
+		font-size: 2em;
+	}
+
+	.menu-selector {
+		font-size: 3em;
+	}
+
+	.menu-container-bottom {
+		margin-top: -5vh;
+	}
+
+	.card-top {
+		margin-top: 5vh;
+	}
 }
